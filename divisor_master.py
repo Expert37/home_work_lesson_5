@@ -13,9 +13,9 @@ def simple_num(number):
         number_list = list(range(2, number))    # кроме 1 и самого числа
         for i in number_list:   # для каждого элемента списка number_list выполняем проверку:
             if number%i==0:     # если в какой-либо итерации остаток от деления=0, то число составное
-                print('Число',number, 'составное')
+                print('1)','Число',number, 'составное')
                 break
-        else: print('Число',number, 'простое')
+        else: print('1)','Число',number, 'простое')
 
 # 2) выводит список всех делителей числа;
 
@@ -27,9 +27,21 @@ def number_div(number):
         div_list = []   # создаем пустой список
         for i in number_list:
             if number % i == 0: div_list.append(i)  # если в итерации находится число, на которое нацело делится number - то этот делитель добавляется в список div_list
-        print(div_list)
+        print('2)', 'делители числа', number, '-', div_list)
 
 #3) выводит самый большой простой делитель числа.
-
-
+def max_simple_div(number):
+    if number > 1000: print('Вы ввели не верное число. Число должно быть от 1 до 1000')
+    elif number < 1: print('Вы ввели не верное число. Число должно быть от 1 до 1000')
+    else:
+        number_list = list(range(1, number+1))  # включая 1 и само число
+        div_list = []   # создаем пустой список
+        for i in number_list:
+            if number % i == 0: div_list.append(i)  # если в итерации находится число, на которое нацело делится number - то этот делитель добавляется в список div_list
+    new_div_list = [i for i in div_list if all(i%c != 0 for c in range(2, i))]
+    '''создадим новый список с использованием функции all:
+    Т.е. i будет добавлен в новый список new_div_list, если для каждого i из списка div_list выполняется условие,
+    что это i не делится без остатка не на одно число от 2 до i (значит оно простое)
+    '''
+    print('3)', 'самый большой простой делитель числа', number, '-', max(new_div_list))
 
